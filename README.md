@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo Application
 
-## Getting Started
+A local-first todo application built with Next.js and SQLite.
 
-First, run the development server:
+## Third-Party Code
+
+| Package | Reason |
+|---------|--------|
+| `better-sqlite3` | SQLite database engine for Node.js |
+| `next` | React framework for building the application |
+| `react` | UI library |
+| `react-dom` | React DOM rendering |
+| `tailwindcss` | CSS styling |
+
+## Database Design
+
+The application uses a single table `tasks` with the following schema:
+
+### Tasks Table
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | INTEGER PRIMARY KEY | Unique identifier (auto-increment) |
+| `title` | TEXT NOT NULL | Task title |
+| `description` | TEXT | Task description (optional) |
+| `due_date` | TEXT NOT NULL | Due date in YYYY-MM-DD format |
+| `topic` | TEXT NOT NULL | Task category/topic |
+| `status` | TEXT NOT NULL | One of: 'Todo', 'In-Progress', 'Complete' |
+| `archived` | BOOLEAN | 0 = active, 1 = archived (tasks are never deleted) |
+| `created_at` | TEXT | Auto-set to current timestamp |
+
+### Relationships
+- Single table design (no foreign keys)
+- `status` is constrained to exactly three values: 'Todo', 'In-Progress', 'Complete'
+- `archived` flag enables soft-delete (tasks are never permanently removed)
+- `overdue` is **derived at read time** by comparing `due_date` with current date
+- Archived tasks remain viewable when "Show archived" is enabled
+
+## Running the Application
+
+### Requirements
+- Node.js 18 or higher
+- npm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd todo-app
+
+# Install dependencies
+npm install
+```
+
+### Running the Application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Running Tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm test
+```
 
-## Learn More
+### Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. Open http://localhost:3000 in your browser
+2. Create a task by filling in the form (Title, Description, Due Date, Topic, Status)
+3. Click "Create Task" to save
+4. View all tasks in the list below
+5. Click "Edit" to modify a task's details
+6. Click "Archive" to archive a task (it will be hidden from active list)
+7. Toggle "Show archived" checkbox to view archived tasks
+8. Use the "Sort by" dropdown to sort tasks by Topic, Status, or Due Date
+9. Use the "Filter by status" dropdown to show only Todo, In-Progress, or Complete tasks
+10. Tasks with a past due date will show a red border and "OVERDUE" label
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Data Persistence
+- All data is stored in a SQLite database file (`database/todo.db`)
+- Data persists across application restarts
+- No user accounts required - single user on the machine
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## AI Declaration
 
-## Deploy on Vercel
+This repository makes use of AI code generation using the following tools:
+- ChatGPT-Web[GPT-4]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This repository does not use AI in-line editing tools.
+This repository does not use AI code review.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The preceding document was written with the assistance of ChatGPT-Web[GPT-4].
