@@ -46,7 +46,7 @@ The application uses a single table `tasks` with the following schema:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/2843941/todo-app.git
 cd todo-app
 
 # Install dependencies
@@ -59,7 +59,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000 in your browser.
+I Open http://localhost:3000 in browser.
 
 ### Running Tests
 
@@ -69,7 +69,7 @@ npm test
 
 ### Usage
 
-1. Open http://localhost:3000 in your browser
+1. Open http://localhost:3000 in browser
 2. Create a task by filling in the form (Title, Description, Due Date, Topic, Status)
 3. Click "Create Task" to save
 4. View all tasks in the list below
@@ -88,9 +88,10 @@ npm test
 ## AI Declaration
 
 This repository makes use of AI code generation using the following tools:
-- ChatGPT-Web[GPT-4]
+-DeepSeek[DeepSeek-v4]
+-Chatgpt
 
 This repository does not use AI in-line editing tools.
 This repository does not use AI code review.
 
-The preceding document was written with the assistance of ChatGPT-Web[GPT-4].
+The preceding document was written with the assistance of DeepSeek[DeepSeek-v4].
