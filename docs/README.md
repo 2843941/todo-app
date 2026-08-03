@@ -89,7 +89,6 @@ npm test
 
 This repository makes use of AI code generation using the following tools:
 -DeepSeek[DeepSeek-v4]
--Chatgpt
 
 This repository does not use AI in-line editing tools.
 This repository does not use AI code review.
